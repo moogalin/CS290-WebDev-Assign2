@@ -1,0 +1,58 @@
+function deepEqual(x, y) {
+if (typeof x == "object" && x != null && typeof y == "object" && y != null) {
+//both X and Y are non-null objects
+
+if (x.length != y.length) {
+//two objects cannot be equivalent if they have unequal length
+return false;
+}
+
+for (var p in x) {
+if (y.hasOwnProperty(p)) {
+//check that y has the specified property p
+if(deepEqual(x[p], y[p])) {
+continue;
+}
+else {
+return false;
+}
+
+}
+else {
+//y does not have the specified property p in x
+return false;
+}
+
+}
+}
+else {
+//either X or Y is not an object
+if (x === y) {
+return true;
+}
+else {
+return false;
+}
+}
+
+return true;
+
+}
+
+var obj = {here: {is: "an"}, object: 2};
+var obj2= {here: 1, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
+console.log(deepEqual(5, "5"));
+// → false
+console.log(deepEqual(5, 5));
+// → true
+console.log(deepEqual(obj, obj2));
+// → false
+
+//Reference for hasOwnProperty: 
+// https://stamat.wordpress.com/2013/06/22/javascript-object-comparison/
