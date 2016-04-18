@@ -1,0 +1,28 @@
+console.log("Calling a function prior to definition...", works());
+console.log("But assigning a function expression to a variable and then calling the variable before the definition...", didNotWork());
+
+function works() {
+return "success";
+}
+
+sub = function didNotWork() {
+return "success";
+}
+
+ 
+
+ 
+
+Output:(using node.js in windows command prompt)
+
+Calling a function prior to definition... success
+
+ReferenceError: sub is not defined
+
+ 
+
+**Note: I omitted extra code regarding my windows directories. 
+
+Observation: When I removed the "sub = function..." the function worked appropriately. This demonstrates that function hoisting does not work when the function definition is hidden by assignment to a variable. 
+
+ 
